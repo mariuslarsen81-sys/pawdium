@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #05080F;
+  --foreground: #F5F0E8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .gold-gradient {
+    background: linear-gradient(135deg, #F0D080 0%, #C9A84C 50%, #A8893A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .gold-border {
+    border-image: linear-gradient(135deg, #F0D080, #C9A84C, #A8893A) 1;
+  }
+  .card-glow {
+    box-shadow: 0 0 40px rgba(201, 168, 76, 0.08), 0 4px 24px rgba(0,0,0,0.4);
+  }
+  .ribbon-shadow {
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+  }
+}
