@@ -246,49 +246,57 @@ export default function HomePage() {
           </p>
         </div>
         <div className="max-w-xs mx-auto">
-          {/* Full-bleed photo card — portrait aspect ratio like an Instagram share */}
-          <div className="rounded-2xl overflow-hidden relative"
+          <div className="rounded-2xl overflow-hidden flex flex-col"
             style={{
               aspectRatio: "4/5",
               border: "1px solid rgba(201,162,74,0.35)",
               boxShadow: "0 0 60px rgba(59,20,88,0.5), 0 8px 32px rgba(0,0,0,0.6)",
+              background: "#111014",
             }}>
-            {/* Dog photo fills the card */}
-            <Image
-              src="/dogs/luna.jpg"
-              alt="Luna — Best of Breed"
-              fill
-              className="object-cover object-top"
-            />
-            {/* Gradient: dark top for logo, clear middle for photo, heavy bottom for text */}
-            <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(17,16,20,0.6) 0%, transparent 25%, transparent 38%, rgba(17,16,20,0.7) 58%, rgba(17,16,20,0.96) 75%, rgba(17,16,20,1) 100%)" }} />
 
-            {/* Logo top-left */}
-            <div className="absolute top-4 left-4 flex items-center gap-2">
-              <Image src="/logo.png" alt="Pawdium" width={22} height={22} className="rounded-md" />
-              <span className="text-xs font-bold tracking-widest" style={{ color: "#C9A24A" }}>PAWDIUM</span>
-            </div>
-
-            {/* Title badge top-right */}
-            <div className="absolute top-4 right-4">
-              <span className="text-xs px-2 py-1 rounded-full font-semibold"
-                style={{ background: "rgba(201,162,74,0.2)", border: "1px solid rgba(201,162,74,0.4)", color: "#E2C66D" }}>
-                ShCh
-              </span>
-            </div>
-
-            {/* Achievement anchored at bottom */}
-            <div className="absolute bottom-0 inset-x-0 px-5 pb-5 text-center" style={{ textShadow: "0 1px 8px rgba(0,0,0,0.8)" }}>
-              <div className="text-ivory font-bold text-xl font-serif mb-0.5">Luna</div>
-              <div className="text-stone/70 text-xs mb-3">Silvermoor Lunar Eclipse ShCh</div>
-              <div className="text-3xl font-bold mb-1 gold-gradient">Best of Breed</div>
-              <div className="text-ivory text-sm font-semibold mb-3">Crufts 2024</div>
-              <div className="flex gap-2 justify-center flex-wrap mb-3">
-                <span className="text-xs px-2.5 py-1 rounded-full text-stone/80" style={{ background: "rgba(17,16,20,0.75)", border: "1px solid rgba(255,255,255,0.1)" }}>NEC Birmingham</span>
-                <span className="text-xs px-2.5 py-1 rounded-full text-stone/80" style={{ background: "rgba(17,16,20,0.75)", border: "1px solid rgba(255,255,255,0.1)" }}>Judge: P. Holloway</span>
+            {/* ── Photo zone ── */}
+            <div className="relative flex-shrink-0" style={{ height: "54%" }}>
+              <Image src="/dogs/luna.jpg" alt="Luna" fill className="object-cover object-top" />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(17,16,20,0.5) 0%, transparent 30%, rgba(17,16,20,0.9) 85%, rgba(17,16,20,1) 100%)" }} />
+              <div className="absolute top-3 left-3 flex items-center gap-1.5">
+                <Image src="/logo.png" alt="Pawdium" width={20} height={20} className="rounded-md" />
+                <span className="text-xs font-bold tracking-widest" style={{ color: "#C9A24A", textShadow: "0 1px 6px rgba(0,0,0,0.9)" }}>PAWDIUM</span>
               </div>
-              <div className="text-xs tracking-widest font-semibold" style={{ color: "#C9A24A" }}>1ST · OPEN BITCH</div>
-              <div className="mt-3 text-xs text-stone/30 tracking-wider">pawdium.dog/luna</div>
+              <div className="absolute top-3 right-3">
+                <span className="text-xs px-2 py-0.5 rounded-full font-semibold"
+                  style={{ background: "rgba(17,16,20,0.85)", border: "1px solid rgba(201,162,74,0.55)", color: "#E2C66D", backdropFilter: "blur(4px)" }}>
+                  ShCh
+                </span>
+              </div>
+            </div>
+
+            {/* ── Achievement zone ── */}
+            <div className="flex-1 flex flex-col items-center justify-between px-5 pt-2 pb-4 text-center">
+              {/* Ribbons */}
+              <div className="flex items-end justify-center gap-0.5">
+                {[
+                  { color: "#DC2626" }, { color: "#C9A24A" }, { color: "#F59E0B" },
+                  { color: "#DC2626" }, { color: "#9333EA" },
+                ].map((r, i) => <RibbonSVG key={i} color={r.color} size={32} />)}
+              </div>
+
+              {/* Name + result */}
+              <div>
+                <div className="text-ivory font-bold text-lg font-serif leading-tight">Luna</div>
+                <div className="text-stone/45 text-xs mb-2">Silvermoor Lunar Eclipse ShCh</div>
+                <div className="text-2xl font-bold gold-gradient leading-tight mb-0.5">Best of Breed</div>
+                <div className="text-ivory/90 text-sm font-semibold">Crufts 2024</div>
+              </div>
+
+              {/* Meta */}
+              <div>
+                <div className="flex gap-1.5 justify-center flex-wrap mb-1.5">
+                  <span className="text-xs px-2 py-0.5 rounded-full text-stone/55" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}>NEC Birmingham</span>
+                  <span className="text-xs px-2 py-0.5 rounded-full text-stone/55" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}>Judge: P. Holloway</span>
+                </div>
+                <div className="text-xs font-semibold tracking-widest mb-1.5" style={{ color: "#C9A24A" }}>1ST · OPEN BITCH</div>
+                <div className="text-xs text-stone/25 tracking-wider">pawdium.dog/luna</div>
+              </div>
             </div>
           </div>
         </div>
