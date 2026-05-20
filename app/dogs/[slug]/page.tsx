@@ -214,7 +214,7 @@ export default function DogProfilePage({ params }: { params: { slug: string } })
       {/* Footer */}
       <footer className="border-t border-plum-700 px-5 py-6 text-center">
         <Link href="/" className="text-sm font-bold tracking-widest gold-gradient">PAWDIUM</Link>
-        <p className="text-stone/30 text-xs mt-1">Every result. Every ribbon. Every dog.</p>
+        <p className="text-stone/30 text-xs mt-1">Every result. Every ribbon. Every run.</p>
       </footer>
     </div>
   );

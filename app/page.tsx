@@ -67,10 +67,11 @@ function WaitlistForm() {
       >
         <option value="">I am a… (optional)</option>
         <option value="exhibitor">Show Exhibitor</option>
+        <option value="agility-handler">Agility Handler</option>
         <option value="breeder">Breeder</option>
         <option value="handler">Professional Handler</option>
         <option value="owner-handler">Owner-Handler</option>
-        <option value="enthusiast">Dog Sport Enthusiast</option>
+        <option value="sport">Dog Sport Competitor</option>
         <option value="other">Other</option>
       </select>
       <button
@@ -178,13 +179,13 @@ export default function HomePage() {
           <h1 className="text-4xl sm:text-5xl font-bold leading-tight mb-4 text-balance text-ivory">
             Every result.<br />
             Every ribbon.<br />
-            <span className="gold-gradient">Every dog.</span>
+            <span className="gold-gradient">Every run.</span>
           </h1>
           <p className="text-stone/70 text-lg leading-relaxed mb-8 max-w-md mx-auto text-balance">
-            Create a beautiful profile for your dog, track show results, build a digital ribbon rack and share every win with the people who understand.
+            Create a beautiful profile for your dog, track show results and agility runs, collect achievements and share every milestone with the people who understand.
           </p>
           <div className="flex justify-center gap-2 mb-10 flex-wrap">
-            {["Show Exhibitors", "Breeder-Owner-Handlers", "Handlers", "Kennel Owners"].map((tag) => (
+            {["Show Exhibitors", "Agility Handlers", "Breeder-Owner-Handlers", "Kennel Owners"].map((tag) => (
               <span key={tag} className="text-xs px-3 py-1 rounded-full bg-plum-700 border border-plum-600 text-stone/60">
                 {tag}
               </span>
@@ -195,7 +196,7 @@ export default function HomePage() {
             style={{ background: "linear-gradient(135deg, #EDD98A 0%, #C9A24A 100%)" }}>
             Build your dog&apos;s Pawdium
           </a>
-          <p className="text-stone/40 text-xs mt-3">From first show to Champion title.</p>
+          <p className="text-stone/40 text-xs mt-3">From first class to Champion title. From first run to MACH.</p>
         </div>
       </section>
 
@@ -287,27 +288,27 @@ export default function HomePage() {
             {
               icon: "🐾",
               title: "Pawdium Profile",
-              desc: "A beautiful public profile for every dog — registered name, breed, titles, show history and photos. Treat your dog like the athlete they are.",
+              desc: "A beautiful public profile for every dog — registered name, breed, titles, show history, agility stats and photos. Treat your dog like the athlete they are.",
             },
             {
               icon: "🎖️",
               title: "Ribbon Rack",
-              desc: "Every ribbon, rosette, CC and title in one visual trophy cabinet. The instant satisfaction of seeing the full career at a glance.",
+              desc: "Every ribbon, rosette, CC, Q and title in one visual trophy cabinet. The instant satisfaction of seeing the full career at a glance.",
             },
             {
               icon: "📸",
               title: "Result Cards",
-              desc: "After every result, generate a polished card for Instagram, Facebook or WhatsApp. Free, fast and share-ready.",
+              desc: "Log a show win or a clean agility run and generate a share-ready card for Instagram, Facebook or WhatsApp in one tap.",
             },
             {
               icon: "📋",
-              title: "Show Diary",
-              desc: "Log every show: date, location, judge, class, placement and notes. Your complete competition record in one place.",
+              title: "Show Diary & Run Log",
+              desc: "Log every show or trial — date, location, judge, class, placement, time, faults and notes. One complete competition record for both worlds.",
             },
             {
               icon: "🏆",
-              title: "Breed Leaderboards",
-              desc: "See the top dogs in your breed, recent results, leading kennels and upcoming shows.",
+              title: "Title Progress",
+              desc: "Track progress towards show titles, agility grades, Qs and championship points. Know exactly where your dog stands.",
             },
             {
               icon: "🔒",
@@ -343,16 +344,16 @@ export default function HomePage() {
       <section className="px-5 pb-16">
         <div className="max-w-sm mx-auto rounded-2xl bg-plum-800 border border-plum-700 p-6">
           <h2 className="text-lg font-bold text-ivory mb-4">
-            Right now, your dog&apos;s show story is everywhere and nowhere.
+            Right now, your dog&apos;s story is everywhere and nowhere.
           </h2>
           <div className="space-y-3">
             {[
-              "Results buried in Facebook posts that disappear into the feed",
+              "Show results buried in Facebook posts",
+              "Agility runs logged in a spreadsheet no one else sees",
               "Ribbons in a box in the spare room",
-              "Titles in a PDF no one ever sees",
-              "Progress scattered across spreadsheets",
-              "Show photos buried in your camera roll",
-              "A pedigree only you understand",
+              "Titles in a PDF no one ever finds",
+              "Run videos scattered across your phone",
+              "Title progress tracked in your head",
             ].map((item) => (
               <div key={item} className="flex gap-3 items-start">
                 <div className="w-4 h-4 rounded-full bg-red-900/40 border border-red-700/50 flex items-center justify-center mt-0.5 flex-shrink-0">
@@ -364,7 +365,7 @@ export default function HomePage() {
           </div>
           <div className="mt-5 pt-4 border-t border-plum-700">
             <p className="text-gold-400 text-sm font-medium">
-              Pawdium keeps the full record in one place — organised, beautiful, shareable and yours.
+              Pawdium keeps the full record in one place — show wins, agility runs, titles and milestones. Organised, beautiful, shareable and yours.
             </p>
           </div>
         </div>
@@ -377,7 +378,7 @@ export default function HomePage() {
             Be first on the Pawdium.
           </h2>
           <p className="text-stone/60 text-sm leading-relaxed">
-            Early access is limited. We&apos;re onboarding serious exhibitors personally — join the list and we&apos;ll be in touch.
+            Early access is limited. We&apos;re onboarding serious exhibitors and agility handlers personally — join the list and we&apos;ll be in touch.
           </p>
         </div>
         <WaitlistForm />
@@ -387,7 +388,7 @@ export default function HomePage() {
       {/* Footer */}
       <footer className="border-t border-plum-700 px-5 py-6 text-center">
         <div className="text-sm font-bold tracking-widest gold-gradient mb-1">PAWDIUM</div>
-        <p className="text-stone/30 text-xs">Every result. Every ribbon. Every dog.</p>
+        <p className="text-stone/30 text-xs">Every result. Every ribbon. Every run.</p>
       </footer>
     </div>
   );
