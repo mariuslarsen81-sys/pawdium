@@ -31,6 +31,8 @@ export type Dog = {
   stats: { ccs: number; rccs: number; bobs: number; shows: number };
   accentColor: string;
   coverGradient: string;
+  coverImage: string;
+  profileImage: string;
 };
 
 export const mockDogs: Dog[] = [
@@ -49,6 +51,8 @@ export const mockDogs: Dog[] = [
     color: "Black & White",
     accentColor: "#6B9FD4",
     coverGradient: "from-blue-950 via-navy-900 to-navy-950",
+    coverImage: "/dogs/luna-cover.jpg",
+    profileImage: "/dogs/luna-profile.jpg",
     stats: { ccs: 7, rccs: 4, bobs: 12, shows: 34 },
     ribbons: [
       { color: "#DC2626", label: "1st Open Bitch", year: 2024 },
@@ -109,6 +113,8 @@ export const mockDogs: Dog[] = [
     color: "Rich Mahogany",
     accentColor: "#B45309",
     coverGradient: "from-orange-950 via-navy-900 to-navy-950",
+    coverImage: "/dogs/caspian-cover.jpg",
+    profileImage: "/dogs/caspian-profile.jpg",
     stats: { ccs: 0, rccs: 2, bobs: 3, shows: 18 },
     ribbons: [
       { color: "#9333EA", label: "Reserve CC", year: 2024 },
@@ -164,6 +170,8 @@ export const mockDogs: Dog[] = [
     color: "Salt & Pepper",
     accentColor: "#64748B",
     coverGradient: "from-slate-900 via-navy-900 to-navy-950",
+    coverImage: "/dogs/stella-cover.jpg",
+    profileImage: "/dogs/stella-profile.jpg",
     stats: { ccs: 11, rccs: 6, bobs: 22, shows: 61 },
     ribbons: [
       { color: "#DC2626", label: "Challenge Certificate", year: 2024 },

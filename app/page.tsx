@@ -92,10 +92,9 @@ function DogPreviewCard({ dog }: { dog: typeof mockDogs[0] }) {
   return (
     <Link href={`/dogs/${dog.slug}`} className="block group">
       <div className="rounded-2xl border border-plum-600 bg-plum-800 overflow-hidden card-gold-glow transition-all duration-300 group-hover:border-gold-600 group-hover:scale-[1.02]">
-        <div className="h-24 relative flex items-end px-5 pb-3"
-          style={{ background: `linear-gradient(135deg, #22102F, #111014)` }}>
-          <div className="absolute inset-0 opacity-20"
-            style={{ background: `radial-gradient(circle at 30% 50%, ${dog.accentColor}, transparent 70%)` }} />
+        <div className="h-28 relative flex items-end px-5 pb-3 overflow-hidden">
+          <Image src={dog.coverImage} alt={dog.callName} fill className="object-cover object-center" />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(17,16,20,0.1), rgba(17,16,20,0.85))" }} />
           <div className="relative">
             <div className="text-2xl font-bold text-ivory font-serif">{dog.callName}</div>
             <div className="text-xs text-stone/70">{dog.breed}</div>

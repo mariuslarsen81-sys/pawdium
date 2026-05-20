@@ -40,19 +40,28 @@ export default function DogProfilePage({ params }: { params: { slug: string } })
       </nav>
 
       {/* Cover */}
-      <div className="pt-14 h-48 relative overflow-hidden"
-        style={{ background: `linear-gradient(135deg, #22102F 0%, #111014 60%, #1A0C24 100%)` }}>
-        <div className="absolute inset-0 opacity-25"
-          style={{ background: `radial-gradient(circle at 25% 60%, ${dog.accentColor}, transparent 65%)` }} />
-        <div className="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-plum-900 to-transparent" />
+      <div className="pt-14 h-52 relative overflow-hidden">
+        <Image
+          src={dog.coverImage}
+          alt={`${dog.callName} cover`}
+          fill
+          className="object-cover object-center"
+          priority
+        />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(17,16,20,0.2), rgba(17,16,20,0.85))" }} />
+        <div className="absolute bottom-0 inset-x-0 h-20 bg-gradient-to-t from-plum-900 to-transparent" />
       </div>
 
       {/* Profile header */}
-      <div className="px-5 pb-6 -mt-8 relative">
+      <div className="px-5 pb-6 -mt-10 relative">
         <div className="flex items-end justify-between mb-4">
-          <div className="w-20 h-20 rounded-2xl border-4 border-plum-900 flex items-center justify-center text-3xl"
-            style={{ background: `linear-gradient(135deg, ${dog.accentColor}33, ${dog.accentColor}11)` }}>
-            🐾
+          <div className="w-20 h-20 rounded-2xl border-4 border-plum-900 overflow-hidden relative">
+            <Image
+              src={dog.profileImage}
+              alt={dog.callName}
+              fill
+              className="object-cover"
+            />
           </div>
           <div className="flex flex-col gap-1 items-end">
             {dog.titles.map((t) => (
