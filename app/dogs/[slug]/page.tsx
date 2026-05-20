@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { getDogBySlug, mockDogs } from "@/lib/mockDogs";
 
 export function generateStaticParams() {
@@ -28,7 +29,10 @@ export default function DogProfilePage({ params }: { params: { slug: string } })
     <div className="min-h-screen bg-plum-900">
       {/* Nav */}
       <nav className="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-5 h-14 border-b border-plum-700 bg-plum-900/90 backdrop-blur-md">
-        <Link href="/" className="text-lg font-bold tracking-widest gold-gradient">PAWDIUM</Link>
+        <Link href="/" className="flex items-center gap-2.5">
+          <Image src="/logo.png" alt="Pawdium" width={28} height={28} className="rounded-lg" />
+          <span className="text-lg font-bold tracking-widest gold-gradient">PAWDIUM</span>
+        </Link>
         <Link href="/#waitlist"
           className="text-sm font-semibold px-4 py-1.5 rounded-lg border border-gold-600/50 text-gold-400 hover:bg-gold-500/10 transition-colors">
           Join Waitlist

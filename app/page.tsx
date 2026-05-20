@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { mockDogs } from "@/lib/mockDogs";
 
 function RibbonSVG({ color, size = 48 }: { color: string; size?: number }) {
@@ -152,7 +153,10 @@ export default function HomePage() {
     <div className="min-h-screen bg-plum-900">
       {/* Nav */}
       <nav className="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-5 h-14 border-b border-plum-700 bg-plum-900/90 backdrop-blur-md">
-        <span className="text-lg font-bold tracking-widest gold-gradient">PAWDIUM</span>
+        <div className="flex items-center gap-2.5">
+          <Image src="/logo.png" alt="Pawdium" width={32} height={32} className="rounded-lg" />
+          <span className="text-lg font-bold tracking-widest gold-gradient">PAWDIUM</span>
+        </div>
         <a href="#waitlist"
           className="text-sm font-semibold px-4 py-1.5 rounded-lg border border-gold-600/50 text-gold-400 hover:bg-gold-500/10 transition-colors">
           Join Waitlist
@@ -166,6 +170,9 @@ export default function HomePage() {
             style={{ background: "radial-gradient(circle, #3B1458, transparent 70%)" }} />
         </div>
         <div className="relative">
+          <div className="flex justify-center mb-6">
+            <Image src="/logo.png" alt="Pawdium" width={80} height={80} className="rounded-2xl" />
+          </div>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/10 border border-gold-600/30 text-gold-400 text-xs font-medium mb-6 tracking-wide">
             NOW TAKING EARLY ACCESS
           </div>
@@ -245,6 +252,9 @@ export default function HomePage() {
               boxShadow: "0 0 40px rgba(59,20,88,0.4)",
             }}>
             <div className="px-6 pt-6 pb-4 text-center">
+              <div className="flex justify-center mb-2">
+                <Image src="/logo.png" alt="Pawdium" width={28} height={28} className="rounded-md opacity-90" />
+              </div>
               <div className="text-xs tracking-widest text-gold-600 font-medium mb-1">PAWDIUM</div>
               <div className="w-8 h-0.5 mx-auto mb-4"
                 style={{ background: "linear-gradient(90deg, transparent, #C9A24A, transparent)" }} />
