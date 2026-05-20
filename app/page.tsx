@@ -245,36 +245,49 @@ export default function HomePage() {
           </p>
         </div>
         <div className="max-w-xs mx-auto">
-          <div className="rounded-2xl overflow-hidden"
+          {/* Full-bleed photo card — portrait aspect ratio like an Instagram share */}
+          <div className="rounded-2xl overflow-hidden relative"
             style={{
-              background: "linear-gradient(135deg, #22102F 0%, #111014 60%, #1A0C24 100%)",
-              border: "1px solid rgba(201,162,74,0.3)",
-              boxShadow: "0 0 40px rgba(59,20,88,0.4)",
+              aspectRatio: "4/5",
+              border: "1px solid rgba(201,162,74,0.35)",
+              boxShadow: "0 0 60px rgba(59,20,88,0.5), 0 8px 32px rgba(0,0,0,0.6)",
             }}>
-            <div className="px-6 pt-6 pb-4 text-center">
-              <div className="flex justify-center mb-2">
-                <Image src="/logo.png" alt="Pawdium" width={28} height={28} className="rounded-md opacity-90" />
-              </div>
-              <div className="text-xs tracking-widest text-gold-600 font-medium mb-1">PAWDIUM</div>
-              <div className="w-8 h-0.5 mx-auto mb-4"
-                style={{ background: "linear-gradient(90deg, transparent, #C9A24A, transparent)" }} />
-              <div className="text-2xl font-bold text-ivory font-serif mb-0.5">Luna</div>
-              <div className="text-xs text-stone/50 mb-4">Silvermoor Lunar Eclipse ShCh</div>
-              <div className="text-3xl font-bold gold-gradient mb-1">Best of Breed</div>
-              <div className="text-sm text-ivory/80 font-medium mb-4">Crufts 2024</div>
-              <div className="flex gap-2 justify-center flex-wrap mb-4">
-                <span className="text-xs px-2.5 py-1 rounded-full bg-plum-700 text-stone/70">NEC Birmingham</span>
-                <span className="text-xs px-2.5 py-1 rounded-full bg-plum-700 text-stone/70">Judge: P. Holloway</span>
-              </div>
-              <div className="text-xs text-gold-600 tracking-wide">1ST · OPEN BITCH</div>
+            {/* Dog photo fills the card */}
+            <Image
+              src="/dogs/luna.jpg"
+              alt="Luna — Best of Breed"
+              fill
+              className="object-cover object-top"
+            />
+            {/* Top fade for logo legibility */}
+            <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(17,16,20,0.55) 0%, transparent 35%, transparent 45%, rgba(17,16,20,0.92) 75%, rgba(17,16,20,1) 100%)" }} />
+
+            {/* Logo top-left */}
+            <div className="absolute top-4 left-4 flex items-center gap-2">
+              <Image src="/logo.png" alt="Pawdium" width={22} height={22} className="rounded-md" />
+              <span className="text-xs font-bold tracking-widest" style={{ color: "#C9A24A" }}>PAWDIUM</span>
             </div>
-            <div className="bg-plum-800/50 px-6 py-3 flex items-center justify-between">
-              <div className="flex gap-1">
-                {["#DC2626", "#C9A24A", "#9333EA"].map((c) => (
-                  <div key={c} className="w-4 h-4 rounded-full border border-plum-600" style={{ backgroundColor: c }} />
-                ))}
+
+            {/* Title badge top-right */}
+            <div className="absolute top-4 right-4">
+              <span className="text-xs px-2 py-1 rounded-full font-semibold"
+                style={{ background: "rgba(201,162,74,0.2)", border: "1px solid rgba(201,162,74,0.4)", color: "#E2C66D" }}>
+                ShCh
+              </span>
+            </div>
+
+            {/* Achievement anchored at bottom */}
+            <div className="absolute bottom-0 inset-x-0 px-5 pb-5 text-center">
+              <div className="text-ivory font-bold text-xl font-serif mb-0.5">Luna</div>
+              <div className="text-stone/60 text-xs mb-3">Silvermoor Lunar Eclipse ShCh</div>
+              <div className="text-3xl font-bold mb-1 gold-gradient">Best of Breed</div>
+              <div className="text-ivory/90 text-sm font-semibold mb-3">Crufts 2024</div>
+              <div className="flex gap-2 justify-center flex-wrap mb-3">
+                <span className="text-xs px-2.5 py-1 rounded-full text-stone/70" style={{ background: "rgba(34,16,47,0.8)", border: "1px solid rgba(255,255,255,0.08)" }}>NEC Birmingham</span>
+                <span className="text-xs px-2.5 py-1 rounded-full text-stone/70" style={{ background: "rgba(34,16,47,0.8)", border: "1px solid rgba(255,255,255,0.08)" }}>Judge: P. Holloway</span>
               </div>
-              <div className="text-xs text-stone/40 tracking-wider">pawdium.dog/luna</div>
+              <div className="text-xs tracking-widest font-semibold" style={{ color: "#C9A24A" }}>1ST · OPEN BITCH</div>
+              <div className="mt-3 text-xs text-stone/30 tracking-wider">pawdium.dog/luna</div>
             </div>
           </div>
         </div>
