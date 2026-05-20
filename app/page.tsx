@@ -260,8 +260,8 @@ export default function HomePage() {
               fill
               className="object-cover object-top"
             />
-            {/* Top fade for logo legibility */}
-            <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(17,16,20,0.55) 0%, transparent 35%, transparent 45%, rgba(17,16,20,0.92) 75%, rgba(17,16,20,1) 100%)" }} />
+            {/* Gradient: dark top for logo, clear middle for photo, heavy bottom for text */}
+            <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(17,16,20,0.6) 0%, transparent 25%, transparent 38%, rgba(17,16,20,0.7) 58%, rgba(17,16,20,0.96) 75%, rgba(17,16,20,1) 100%)" }} />
 
             {/* Logo top-left */}
             <div className="absolute top-4 left-4 flex items-center gap-2">
@@ -278,14 +278,14 @@ export default function HomePage() {
             </div>
 
             {/* Achievement anchored at bottom */}
-            <div className="absolute bottom-0 inset-x-0 px-5 pb-5 text-center">
+            <div className="absolute bottom-0 inset-x-0 px-5 pb-5 text-center" style={{ textShadow: "0 1px 8px rgba(0,0,0,0.8)" }}>
               <div className="text-ivory font-bold text-xl font-serif mb-0.5">Luna</div>
-              <div className="text-stone/60 text-xs mb-3">Silvermoor Lunar Eclipse ShCh</div>
+              <div className="text-stone/70 text-xs mb-3">Silvermoor Lunar Eclipse ShCh</div>
               <div className="text-3xl font-bold mb-1 gold-gradient">Best of Breed</div>
-              <div className="text-ivory/90 text-sm font-semibold mb-3">Crufts 2024</div>
+              <div className="text-ivory text-sm font-semibold mb-3">Crufts 2024</div>
               <div className="flex gap-2 justify-center flex-wrap mb-3">
-                <span className="text-xs px-2.5 py-1 rounded-full text-stone/70" style={{ background: "rgba(34,16,47,0.8)", border: "1px solid rgba(255,255,255,0.08)" }}>NEC Birmingham</span>
-                <span className="text-xs px-2.5 py-1 rounded-full text-stone/70" style={{ background: "rgba(34,16,47,0.8)", border: "1px solid rgba(255,255,255,0.08)" }}>Judge: P. Holloway</span>
+                <span className="text-xs px-2.5 py-1 rounded-full text-stone/80" style={{ background: "rgba(17,16,20,0.75)", border: "1px solid rgba(255,255,255,0.1)" }}>NEC Birmingham</span>
+                <span className="text-xs px-2.5 py-1 rounded-full text-stone/80" style={{ background: "rgba(17,16,20,0.75)", border: "1px solid rgba(255,255,255,0.1)" }}>Judge: P. Holloway</span>
               </div>
               <div className="text-xs tracking-widest font-semibold" style={{ color: "#C9A24A" }}>1ST · OPEN BITCH</div>
               <div className="mt-3 text-xs text-stone/30 tracking-wider">pawdium.dog/luna</div>
