@@ -1,23 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
-import { promises as fs } from "fs";
-import path from "path";
+import { neon } from "@neondatabase/serverless";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const WAITLIST_FILE = path.join(process.cwd(), "waitlist.json");
 
-async function saveToFile(email: string, role: string) {
-  let entries: { email: string; role: string; joinedAt: string }[] = [];
-  try {
-    const raw = await fs.readFile(WAITLIST_FILE, "utf-8");
-    entries = JSON.parse(raw);
-  } catch {
-    // file doesn't exist yet
-  }
-  if (!entries.find((e) => e.email === email)) {
-    entries.push({ email, role, joinedAt: new Date().toISOString() });
-    await fs.writeFile(WAITLIST_FILE, JSON.stringify(entries, null, 2));
-  }
+async function getDb() {
+  const sql = neon(process.env.POSTGRES_URL!);
+  await sql`
+    CREATE TABLE IF NOT EXISTS waitlist (
+      id SERIAL PRIMARY KEY,
+      email TEXT UNIQUE NOT NULL,
+      role TEXT,
+      joined_at TIMESTAMPTZ DEFAULT NOW()
+    )
+  `;
+  return sql;
 }
 
 export async function POST(req: NextRequest) {
@@ -28,11 +25,14 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Valid email required" }, { status: 400 });
     }
 
-    // Always save locally — works regardless of Resend domain verification status
-    await saveToFile(email, role ?? "");
+    const sql = await getDb();
 
-    // Send confirmation email (on Resend free tier this only delivers to
-    // the account owner's address until a sending domain is verified)
+    await sql`
+      INSERT INTO waitlist (email, role)
+      VALUES (${email}, ${role ?? ""})
+      ON CONFLICT (email) DO NOTHING
+    `;
+
     try {
       await resend.emails.send({
         from: "Pawdium <hello@pawdium.dog>",
@@ -57,7 +57,6 @@ export async function POST(req: NextRequest) {
         `,
       });
     } catch (emailError) {
-      // Email failed (e.g. unverified domain on free tier) but signup is saved
       console.warn("Email send failed:", emailError);
     }
 
