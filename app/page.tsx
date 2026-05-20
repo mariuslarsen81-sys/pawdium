@@ -93,7 +93,7 @@ function DogPreviewCard({ dog }: { dog: typeof mockDogs[0] }) {
   return (
     <Link href={`/dogs/${dog.slug}`} className="block group">
       <div className="rounded-2xl border border-plum-600 bg-plum-800 overflow-hidden card-gold-glow transition-all duration-300 group-hover:border-gold-600 group-hover:scale-[1.02]">
-        <div className="h-28 relative flex items-end px-5 pb-3 overflow-hidden">
+        <div className="h-44 relative flex items-end px-5 pb-3 overflow-hidden">
           <Image src={dog.coverImage} alt={dog.callName} fill className="object-cover object-center" />
           <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(17,16,20,0.1), rgba(17,16,20,0.85))" }} />
           <div className="relative">
@@ -125,15 +125,15 @@ function DogPreviewCard({ dog }: { dog: typeof mockDogs[0] }) {
               </div>
             ))}
           </div>
-          <div className="flex gap-1 flex-wrap">
-            {dog.ribbons.slice(0, 6).map((r, i) => (
-              <div key={i} className="w-7 h-7 rounded-full border-2"
-                style={{ borderColor: r.color, backgroundColor: `${r.color}22` }}
-                title={r.label} />
+          <div className="flex gap-1 flex-wrap items-end">
+            {dog.ribbons.slice(0, 8).map((r, i) => (
+              <div key={i} title={r.label}>
+                <RibbonSVG color={r.color} size={28} />
+              </div>
             ))}
-            {dog.ribbons.length > 6 && (
-              <div className="w-7 h-7 rounded-full bg-plum-700 border border-plum-600 flex items-center justify-center text-xs text-stone/50">
-                +{dog.ribbons.length - 6}
+            {dog.ribbons.length > 8 && (
+              <div className="w-7 h-7 rounded-full bg-plum-700 border border-plum-600 flex items-center justify-center text-xs text-stone/50 self-center">
+                +{dog.ribbons.length - 8}
               </div>
             )}
           </div>
