@@ -223,7 +223,7 @@ export default function HomePage() {
         <div className="max-w-sm mx-auto rounded-2xl border border-plum-600 bg-plum-800 p-6 card-glow">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <div className="text-sm font-semibold text-ivory font-serif">Luna&apos;s Ribbon Rack</div>
+              <div className="text-sm font-semibold text-ivory font-serif">Luna&apos;s Achievement Rack</div>
               <div className="text-xs text-stone/50">Show Champion · Border Collie</div>
             </div>
             <span className="text-xs px-2 py-1 rounded-full bg-gold-500/20 text-gold-400 border border-gold-600/30 font-medium">ShCh</span>
@@ -367,8 +367,8 @@ export default function HomePage() {
               {/* Ribbons */}
               <div className="flex items-end justify-center gap-0.5">
                 {[
-                  { color: "#DC2626" }, { color: "#C9A24A" }, { color: "#F59E0B" },
-                  { color: "#DC2626" }, { color: "#9333EA" },
+                  { color: "#C9A24A" }, { color: "#7C3AED" }, { color: "#3B82F6" },
+                  { color: "#C9A24A" }, { color: "#9CA3AF" },
                 ].map((r, i) => <RibbonSVG key={i} color={r.color} size={32} />)}
               </div>
 

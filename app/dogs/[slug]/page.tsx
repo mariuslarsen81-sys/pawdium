@@ -130,10 +130,11 @@ export default function DogProfilePage({ params }: { params: { slug: string } })
           <div className="text-xs text-stone/40 font-medium mb-3 uppercase tracking-wide">Key</div>
           <div className="grid grid-cols-2 gap-2">
             {[
-              { color: "#DC2626", label: "1st / CC / BOB" },
-              { color: "#9333EA", label: "Reserve CC" },
-              { color: "#C9A24A", label: "Best of Breed" },
-              { color: "#F59E0B", label: "Group Placement" },
+              { color: "#C9A24A", label: "Challenge Certificate (CC)" },
+              { color: "#9CA3AF", label: "Reserve CC" },
+              { color: "#7C3AED", label: "Best of Breed (BOB)" },
+              { color: "#3B82F6", label: "Group Placement" },
+              { color: "#DC2626", label: "Class Win (1st)" },
               { color: "#16A34A", label: "Junior Warrant / BPB" },
               { color: "#EF4444", label: "Best in Show" },
             ].map((k) => (
