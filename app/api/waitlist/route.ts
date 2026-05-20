@@ -35,23 +35,29 @@ export async function POST(req: NextRequest) {
 
     try {
       await resend.emails.send({
-        from: "Pawdium <hello@pawdium.dog>",
+        from: "Marius at Pawdium <hello@pawdium.dog>",
         to: email,
-        subject: "You're on the Pawdium waitlist",
+        subject: "You're on the Pawdium list",
         html: `
-          <div style="background:#05080F;color:#F5F0E8;font-family:-apple-system,sans-serif;padding:40px;max-width:520px;margin:0 auto;border-radius:12px;">
-            <div style="font-size:24px;font-weight:700;letter-spacing:2px;color:#C9A84C;margin-bottom:8px;">PAWDIUM</div>
-            <h1 style="font-size:22px;font-weight:600;margin:24px 0 12px;">You're on the list.</h1>
-            <p style="color:#a0a8b8;line-height:1.6;margin-bottom:24px;">
-              We're building the digital show record and social trophy cabinet for serious dog people.
-              We'll be in touch when early access opens.
+          <div style="background:#111014;color:#F7F2E8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;padding:48px 40px;max-width:520px;margin:0 auto;border-radius:16px;border:1px solid #22102F;">
+            <div style="font-size:13px;font-weight:700;letter-spacing:3px;background:linear-gradient(135deg,#EDD98A,#C9A24A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:32px;">PAWDIUM</div>
+            <h1 style="font-size:26px;font-weight:700;margin:0 0 16px;color:#F7F2E8;line-height:1.3;">You're on the list.</h1>
+            <p style="color:#D8D0C3;line-height:1.7;margin:0 0 20px;font-size:15px;">
+              Every result. Every ribbon. Every run — in one place, beautifully presented.
+              Whether you're chasing a Championship title or your next clear round, Pawdium is built for dogs like yours.
             </p>
-            <p style="color:#a0a8b8;line-height:1.6;">
-              In the meantime — if you'd like to help shape the product, reply to this email.
-              We're talking to exhibitors and handlers right now.
+            <p style="color:#D8D0C3;line-height:1.7;margin:0 0 32px;font-size:15px;">
+              Early access is limited and we're bringing people on personally. We'll be in touch soon.
             </p>
-            <div style="margin-top:32px;padding-top:24px;border-top:1px solid #1A2744;color:#5a6478;font-size:13px;">
-              Pawdium · The digital show record for serious dog people
+            <p style="color:#D8D0C3;line-height:1.7;margin:0 0 8px;font-size:15px;">
+              In the meantime, if you want to help shape what we build — reply to this email. I'm talking to exhibitors and handlers right now and I'd love to hear about your dog.
+            </p>
+            <p style="color:#F7F2E8;line-height:1.7;margin:32px 0 0;font-size:15px;">
+              Marius<br>
+              <span style="color:#C9A24A;">Founder, Pawdium</span>
+            </p>
+            <div style="margin-top:40px;padding-top:24px;border-top:1px solid #22102F;color:#6B6460;font-size:12px;letter-spacing:0.5px;">
+              Pawdium &middot; Every result. Every ribbon. Every run.
             </div>
           </div>
         `,
