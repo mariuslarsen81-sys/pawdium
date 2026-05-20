@@ -11,15 +11,19 @@ async function getDb() {
       id SERIAL PRIMARY KEY,
       email TEXT UNIQUE NOT NULL,
       role TEXT,
+      activity TEXT,
+      dog_count TEXT,
       joined_at TIMESTAMPTZ DEFAULT NOW()
     )
   `;
+  await sql`ALTER TABLE waitlist ADD COLUMN IF NOT EXISTS activity TEXT`;
+  await sql`ALTER TABLE waitlist ADD COLUMN IF NOT EXISTS dog_count TEXT`;
   return sql;
 }
 
 export async function POST(req: NextRequest) {
   try {
-    const { email, role } = await req.json();
+    const { email, role, activity, dogCount } = await req.json();
 
     if (!email || !email.includes("@")) {
       return NextResponse.json({ error: "Valid email required" }, { status: 400 });
@@ -28,8 +32,8 @@ export async function POST(req: NextRequest) {
     const sql = await getDb();
 
     await sql`
-      INSERT INTO waitlist (email, role)
-      VALUES (${email}, ${role ?? ""})
+      INSERT INTO waitlist (email, role, activity, dog_count)
+      VALUES (${email}, ${role ?? ""}, ${activity ?? ""}, ${dogCount ?? ""})
       ON CONFLICT (email) DO NOTHING
     `;
 

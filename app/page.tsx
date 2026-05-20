@@ -22,6 +22,8 @@ function RibbonSVG({ color, size = 48 }: { color: string; size?: number }) {
 function WaitlistForm() {
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
+  const [activity, setActivity] = useState("");
+  const [dogCount, setDogCount] = useState("");
   const [state, setState] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   async function handleSubmit(e: React.FormEvent) {
@@ -31,7 +33,7 @@ function WaitlistForm() {
       const res = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, role }),
+        body: JSON.stringify({ email, role, activity, dogCount }),
       });
       if (res.ok) setState("success");
       else setState("error");
@@ -50,6 +52,8 @@ function WaitlistForm() {
     );
   }
 
+  const selectClass = "w-full px-4 py-3.5 rounded-lg bg-plum-700 border border-plum-600 text-ivory focus:outline-none focus:border-gold-500 text-base";
+
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-full max-w-md mx-auto">
       <input
@@ -60,11 +64,7 @@ function WaitlistForm() {
         onChange={(e) => setEmail(e.target.value)}
         className="w-full px-4 py-3.5 rounded-lg bg-plum-700 border border-plum-600 text-ivory placeholder-stone/40 focus:outline-none focus:border-gold-500 text-base"
       />
-      <select
-        value={role}
-        onChange={(e) => setRole(e.target.value)}
-        className="w-full px-4 py-3.5 rounded-lg bg-plum-700 border border-plum-600 text-ivory focus:outline-none focus:border-gold-500 text-base"
-      >
+      <select value={role} onChange={(e) => setRole(e.target.value)} className={selectClass}>
         <option value="">I am a… (optional)</option>
         <option value="exhibitor">Show Exhibitor</option>
         <option value="agility-handler">Agility Handler</option>
@@ -73,6 +73,19 @@ function WaitlistForm() {
         <option value="owner-handler">Owner-Handler</option>
         <option value="sport">Dog Sport Competitor</option>
         <option value="other">Other</option>
+      </select>
+      <select value={activity} onChange={(e) => setActivity(e.target.value)} className={selectClass}>
+        <option value="">Primary activity… (optional)</option>
+        <option value="show">Conformation / Show</option>
+        <option value="agility">Agility</option>
+        <option value="both">Both show and agility</option>
+        <option value="other-sport">Other dog sport</option>
+      </select>
+      <select value={dogCount} onChange={(e) => setDogCount(e.target.value)} className={selectClass}>
+        <option value="">Dogs you actively compete with… (optional)</option>
+        <option value="1">1 dog</option>
+        <option value="2-3">2–3 dogs</option>
+        <option value="4+">4 or more dogs</option>
       </select>
       <button
         type="submit"
@@ -182,22 +195,28 @@ export default function HomePage() {
             Every ribbon.<br />
             <span className="gold-gradient">Every run.</span>
           </h1>
-          <p className="text-stone/70 text-lg leading-relaxed mb-8 max-w-md mx-auto text-balance">
-            Create a beautiful profile for your dog, track show results and agility runs, collect achievements and share every milestone with the people who understand.
+          <p className="text-stone/70 text-lg leading-relaxed mb-4 max-w-md mx-auto text-balance">
+            Create a beautiful competition profile for your dog. Track show results and agility runs, build a digital ribbon rack, and share every milestone with the people who understand.
           </p>
-          <div className="flex justify-center gap-2 mb-10 flex-wrap">
+          <p className="text-stone/45 text-sm mb-8 max-w-xs mx-auto font-medium tracking-wide">
+            Not another pet photo app. A competition record your dog deserves.
+          </p>
+          <div className="flex justify-center gap-2 mb-8 flex-wrap">
             {["Show Exhibitors", "Agility Handlers", "Breeder-Owner-Handlers", "Kennel Owners"].map((tag) => (
               <span key={tag} className="text-xs px-3 py-1 rounded-full bg-plum-700 border border-plum-600 text-stone/60">
                 {tag}
               </span>
             ))}
           </div>
+          <p className="text-stone/35 text-xs mb-8 italic">
+            Pawdium is the achievement profile for competitive dogs.
+          </p>
           <a href="#waitlist"
             className="inline-block px-8 py-4 rounded-xl font-semibold text-plum-900 text-base"
             style={{ background: "linear-gradient(135deg, #EDD98A 0%, #C9A24A 100%)" }}>
             Build your dog&apos;s Pawdium
           </a>
-          <p className="text-stone/40 text-xs mt-3">From first class to Champion title. From first run to MACH.</p>
+          <p className="text-stone/40 text-xs mt-3">From first class to Champion title. From first run to the next big milestone.</p>
         </div>
       </section>
 
@@ -330,7 +349,7 @@ export default function HomePage() {
             {
               icon: "🏆",
               title: "Title Progress",
-              desc: "Track progress towards show titles, agility grades, Qs and championship points. Know exactly where your dog stands.",
+              desc: "Start tracking titles, Qs, grades and milestones in one place — with deeper title-progress tools coming as we build with early users.",
             },
             {
               icon: "🔒",
@@ -353,7 +372,7 @@ export default function HomePage() {
       <section className="px-5 pb-16">
         <div className="text-center mb-6">
           <h2 className="text-xl font-bold text-ivory mb-2">Three dogs. Three stories.</h2>
-          <p className="text-stone/60 text-sm">Example Pawdium Profiles — this is what yours could look like.</p>
+          <p className="text-stone/60 text-sm">Demo profiles based on fictional data — this is what yours could look like.</p>
         </div>
         <div className="grid gap-4 max-w-sm mx-auto">
           {mockDogs.map((dog) => (

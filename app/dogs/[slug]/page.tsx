@@ -199,7 +199,7 @@ export default function DogProfilePage({ params }: { params: { slug: string } })
       <div className="px-5 pb-16">
         <div className="rounded-2xl p-6 text-center border border-plum-600"
           style={{ background: "linear-gradient(135deg, #22102F, #111014)" }}>
-          <div className="text-sm text-gold-400 font-medium mb-2">This is a mock Pawdium Profile.</div>
+          <div className="text-sm text-gold-400 font-medium mb-2">Demo profile — fictional data.</div>
           <p className="text-stone/60 text-sm mb-5">
             Join the waitlist to build your own dog&apos;s profile.
           </p>
