@@ -195,22 +195,20 @@ export default function HomePage() {
             Every ribbon.<br />
             <span className="gold-gradient">Every run.</span>
           </h1>
-          <p className="text-stone/70 text-lg leading-relaxed mb-4 max-w-md mx-auto text-balance">
+          <p className="text-stone/70 text-lg leading-relaxed mb-3 max-w-md mx-auto text-balance">
             Create a beautiful competition profile for your dog. Track show results and agility runs, build a digital ribbon rack, and share every milestone with the people who understand.
           </p>
-          <p className="text-stone/45 text-sm mb-8 max-w-xs mx-auto font-medium tracking-wide">
-            Not another pet photo app. A competition record your dog deserves.
+          <p className="mb-8 max-w-sm mx-auto text-center leading-snug">
+            <span className="text-stone/75 text-sm">Not another pet photo app.</span><br />
+            <span className="text-stone/50 text-xs">A competition record your dog deserves.</span>
           </p>
-          <div className="flex justify-center gap-2 mb-8 flex-wrap">
+          <div className="flex justify-center gap-2 mb-10 flex-wrap">
             {["Show Exhibitors", "Agility Handlers", "Breeder-Owner-Handlers", "Kennel Owners"].map((tag) => (
               <span key={tag} className="text-xs px-3 py-1 rounded-full bg-plum-700 border border-plum-600 text-stone/60">
                 {tag}
               </span>
             ))}
           </div>
-          <p className="text-stone/35 text-xs mb-8 italic">
-            Pawdium is the achievement profile for competitive dogs.
-          </p>
           <a href="#waitlist"
             className="inline-block px-8 py-4 rounded-xl font-semibold text-plum-900 text-base"
             style={{ background: "linear-gradient(135deg, #EDD98A 0%, #C9A24A 100%)" }}>
