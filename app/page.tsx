@@ -404,7 +404,7 @@ export default function HomePage() {
           </div>
           <div className="mt-5 pt-4 border-t border-plum-700">
             <p className="text-gold-400 text-sm font-medium">
-              Pawdium keeps the full record in one place — show wins, agility runs, titles and milestones. Organised, beautiful, shareable and yours.
+              Pawdium brings the full record together: show wins, agility runs, ribbons, titles, videos and milestones. Organised, beautiful, shareable and yours.
             </p>
           </div>
         </div>
