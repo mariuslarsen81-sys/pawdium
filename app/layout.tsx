@@ -2,19 +2,19 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Pawdium — The Digital Show Record for Serious Dog People",
+  title: "Pawdium — Every result. Every ribbon. Every dog.",
   description:
-    "Log your wins. Build your ribbon rack. Share your story. Pawdium is the achievement platform for dog show exhibitors, handlers and breeders.",
+    "Create a beautiful profile for your dog, track show results, build a digital ribbon rack and share every win with the people who understand.",
   keywords: ["dog show", "dog exhibitor", "ribbon rack", "show dog", "dog sport", "breeder", "kennel"],
   openGraph: {
-    title: "Pawdium — The Digital Show Record for Serious Dog People",
-    description: "Log your wins. Build your ribbon rack. Share your story.",
+    title: "Pawdium — Every result. Every ribbon. Every dog.",
+    description: "Create a beautiful profile for your dog, track show results, build a digital ribbon rack and share every win.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pawdium — The Digital Show Record for Serious Dog People",
-    description: "Log your wins. Build your ribbon rack. Share your story.",
+    title: "Pawdium — Every result. Every ribbon. Every dog.",
+    description: "Create a beautiful profile for your dog, track show results, build a digital ribbon rack and share every win.",
   },
   manifest: "/manifest.json",
   appleWebApp: {
@@ -27,17 +27,13 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#05080F",
+  themeColor: "#111014",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="antialiased bg-navy-950 text-cream">
+      <body className="antialiased bg-plum-900 text-ivory">
         {children}
       </body>
     </html>

@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #05080F;
-  --foreground: #F5F0E8;
+  --background: #111014;
+  --foreground: #F7F2E8;
 }
 
 html {
@@ -23,18 +23,15 @@ body {
     text-wrap: balance;
   }
   .gold-gradient {
-    background: linear-gradient(135deg, #F0D080 0%, #C9A84C 50%, #A8893A 100%);
+    background: linear-gradient(135deg, #EDD98A 0%, #C9A24A 50%, #A8853A 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-  .gold-border {
-    border-image: linear-gradient(135deg, #F0D080, #C9A84C, #A8893A) 1;
-  }
   .card-glow {
-    box-shadow: 0 0 40px rgba(201, 168, 76, 0.08), 0 4px 24px rgba(0,0,0,0.4);
+    box-shadow: 0 0 40px rgba(59, 20, 88, 0.3), 0 4px 24px rgba(0,0,0,0.5);
   }
-  .ribbon-shadow {
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+  .card-gold-glow {
+    box-shadow: 0 0 40px rgba(201, 162, 74, 0.08), 0 4px 24px rgba(0,0,0,0.4);
   }
 }
