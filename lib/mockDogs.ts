@@ -47,7 +47,7 @@ export const mockDogs: Dog[] = [
     handler: "Sarah M. (owner-handler)",
     titles: ["Show Champion", "Junior Warrant"],
     bio:
-      "Luna has been turning heads since her first championship show at 10 months. An effortless mover with an exceptional head, she became Show Champion at just 26 months — one of the youngest Border Collies to do so in recent years.",
+      "This demo profile shows how Pawdium brings a dog's results, ribbons, titles and milestones into one beautiful career timeline — from first class to Show Champion.",
     color: "Black & White",
     accentColor: "#6B9FD4",
     coverGradient: "from-blue-950 via-navy-900 to-navy-950",
@@ -109,7 +109,7 @@ export const mockDogs: Dog[] = [
     handler: "James H. (owner-handler)",
     titles: [],
     bio:
-      "Caspian is a young dog with a big future. His deep mahogany coat and powerful, free-striding movement have already caught the eye of several respected judges. First CC feels close.",
+      "This demo profile shows how Pawdium tracks a rising dog's career — RCCs, BOBs, show diary entries and the steady climb towards a first CC.",
     color: "Rich Mahogany",
     accentColor: "#B45309",
     coverGradient: "from-orange-950 via-navy-900 to-navy-950",
@@ -166,7 +166,7 @@ export const mockDogs: Dog[] = [
     handler: "Emma Greybridge",
     titles: ["Show Champion", "Junior Warrant"],
     bio:
-      "Stella is the cornerstone of the Greybridge kennel. A multiple Group placer with two BIS awards at Open shows, she brings a compact, perfectly balanced outline and a showgirl temperament that wins over every ringside.",
+      "This demo profile shows how Pawdium handles a kennel dog's full career — multiple CCs, Group placings, BOBs and a complete show diary across seasons.",
     color: "Salt & Pepper",
     accentColor: "#64748B",
     coverGradient: "from-slate-900 via-navy-900 to-navy-950",

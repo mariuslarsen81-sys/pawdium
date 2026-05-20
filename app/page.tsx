@@ -216,7 +216,7 @@ export default function HomePage() {
             style={{ background: "linear-gradient(135deg, #EDD98A 0%, #C9A24A 100%)" }}>
             Build your dog&apos;s Pawdium
           </a>
-          <p className="text-stone/40 text-xs mt-3">From first class to Champion title. From first run to the next big milestone.</p>
+          <p className="text-stone/40 text-xs mt-3">From first class to Champion title. From first run to career milestone.</p>
         </div>
       </section>
 
@@ -349,7 +349,7 @@ export default function HomePage() {
             {
               icon: "🏆",
               title: "Title Progress",
-              desc: "Start tracking titles, Qs, grades and milestones in one place — with deeper title-progress tools coming as we build with early users.",
+              desc: "See progress towards titles, grades and milestones without keeping it all in your head — built out further with early users.",
             },
             {
               icon: "🔒",
