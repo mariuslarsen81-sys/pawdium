@@ -169,7 +169,7 @@ export default function HomePage() {
       <nav className="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-5 h-14 border-b border-plum-700 bg-plum-900/90 backdrop-blur-md">
         <div className="flex items-center gap-2.5">
           <Image src="/logo.png" alt="Pawdium" width={32} height={32} className="rounded-lg" />
-          <span className="text-lg font-bold tracking-widest gold-gradient">PAWDIUM</span>
+          <span className="text-lg font-bold tracking-wide gold-gradient">Pawdium</span>
         </div>
         <a href="#waitlist"
           className="text-sm font-semibold px-4 py-1.5 rounded-lg border border-gold-600/50 text-gold-400 hover:bg-gold-500/10 transition-colors">
@@ -352,7 +352,7 @@ export default function HomePage() {
               <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(17,16,20,0.5) 0%, transparent 30%, rgba(17,16,20,0.9) 85%, rgba(17,16,20,1) 100%)" }} />
               <div className="absolute top-3 left-3 flex items-center gap-1.5">
                 <Image src="/logo.png" alt="Pawdium" width={20} height={20} className="rounded-md" />
-                <span className="text-xs font-bold tracking-widest" style={{ color: "#C9A24A", textShadow: "0 1px 6px rgba(0,0,0,0.9)" }}>PAWDIUM</span>
+                <span className="text-xs font-bold tracking-widest" style={{ color: "#C9A24A", textShadow: "0 1px 6px rgba(0,0,0,0.9)" }}>Pawdium</span>
               </div>
               <div className="absolute top-3 right-3">
                 <span className="text-xs px-2 py-0.5 rounded-full font-semibold"
@@ -501,7 +501,7 @@ export default function HomePage() {
 
       {/* Footer */}
       <footer className="border-t border-plum-700 px-5 py-6 text-center">
-        <div className="text-sm font-bold tracking-widest gold-gradient mb-1">PAWDIUM</div>
+        <div className="text-sm font-bold tracking-wide gold-gradient mb-1">Pawdium</div>
         <p className="text-stone/30 text-xs">Every result. Every ribbon. Every run.</p>
       </footer>
     </div>

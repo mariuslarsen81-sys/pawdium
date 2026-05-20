@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
         subject: "You're on the Pawdium list",
         html: `
           <div style="background:#111014;color:#F7F2E8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;padding:48px 40px;max-width:520px;margin:0 auto;border-radius:16px;border:1px solid #22102F;">
-            <div style="font-size:13px;font-weight:700;letter-spacing:3px;background:linear-gradient(135deg,#EDD98A,#C9A24A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:32px;">PAWDIUM</div>
+            <div style="font-size:13px;font-weight:700;letter-spacing:3px;background:linear-gradient(135deg,#EDD98A,#C9A24A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:32px;">Pawdium</div>
             <h1 style="font-size:26px;font-weight:700;margin:0 0 16px;color:#F7F2E8;line-height:1.3;">You're on the list.</h1>
             <p style="color:#D8D0C3;line-height:1.7;margin:0 0 20px;font-size:15px;">
               Every result. Every ribbon. Every run — in one place, beautifully presented.

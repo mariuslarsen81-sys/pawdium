@@ -31,7 +31,7 @@ export default function DogProfilePage({ params }: { params: { slug: string } })
       <nav className="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-5 h-14 border-b border-plum-700 bg-plum-900/90 backdrop-blur-md">
         <Link href="/" className="flex items-center gap-2.5">
           <Image src="/logo.png" alt="Pawdium" width={28} height={28} className="rounded-lg" />
-          <span className="text-lg font-bold tracking-widest gold-gradient">PAWDIUM</span>
+          <span className="text-lg font-bold tracking-wide gold-gradient">Pawdium</span>
         </Link>
         <Link href="/#waitlist"
           className="text-sm font-semibold px-4 py-1.5 rounded-lg border border-gold-600/50 text-gold-400 hover:bg-gold-500/10 transition-colors">
@@ -213,7 +213,7 @@ export default function DogProfilePage({ params }: { params: { slug: string } })
 
       {/* Footer */}
       <footer className="border-t border-plum-700 px-5 py-6 text-center">
-        <Link href="/" className="text-sm font-bold tracking-widest gold-gradient">PAWDIUM</Link>
+        <Link href="/" className="text-sm font-bold tracking-wide gold-gradient">Pawdium</Link>
         <p className="text-stone/30 text-xs mt-1">Every result. Every ribbon. Every run.</p>
       </footer>
     </div>
