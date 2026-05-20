@@ -254,6 +254,81 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Agility Run Log */}
+      <section className="px-5 pb-16">
+        <div className="max-w-sm mx-auto rounded-2xl border border-plum-600 bg-plum-800 p-6 card-glow">
+          {/* Header */}
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <div className="text-sm font-semibold text-ivory font-serif">Milo&apos;s Run Log</div>
+              <div className="text-xs text-stone/50">Border Collie · Agility</div>
+            </div>
+            <span className="text-xs px-2 py-1 rounded-full font-medium"
+              style={{ background: "rgba(22,163,74,0.15)", border: "1px solid rgba(22,163,74,0.35)", color: "#4ade80" }}>
+              Grade 5
+            </span>
+          </div>
+
+          {/* Run entries */}
+          <div className="space-y-2 mb-4">
+            {[
+              { show: "Kenilworth DTC", date: "14 Jun", class: "Jumping · G5", time: "34.21s", faults: 0, place: "2nd", q: true, video: true },
+              { show: "ADSC Open", date: "1 Jun", class: "Agility · G5", time: "33.87s", faults: 0, place: "1st", q: true, video: true },
+              { show: "Thames DTC", date: "18 May", class: "Jumping · G5", time: "36.40s", faults: 5, place: null, q: false, video: false },
+            ].map((r, i) => (
+              <div key={i} className="flex items-center gap-3 rounded-xl px-3 py-2.5"
+                style={{ background: "rgba(17,16,20,0.5)", borderLeft: `3px solid ${r.faults === 0 ? "#16A34A" : "#D97706"}` }}>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-1.5 mb-0.5">
+                    <span className="text-xs font-semibold text-ivory truncate">{r.show}</span>
+                    {r.q && (
+                      <span className="text-xs px-1.5 py-0 rounded font-bold flex-shrink-0"
+                        style={{ background: "rgba(22,163,74,0.2)", color: "#4ade80", fontSize: "10px" }}>Q</span>
+                    )}
+                    {r.video && (
+                      <span className="text-stone/30 flex-shrink-0" style={{ fontSize: "10px" }}>▶</span>
+                    )}
+                  </div>
+                  <div className="text-stone/45 leading-none" style={{ fontSize: "10px" }}>{r.class} · {r.date}</div>
+                </div>
+                <div className="text-right flex-shrink-0">
+                  <div className="text-xs font-semibold" style={{ color: r.faults === 0 ? "#4ade80" : "#FBBF24" }}>{r.time}</div>
+                  <div className="text-stone/40 leading-none" style={{ fontSize: "10px" }}>
+                    {r.faults === 0 ? "Clear" : `${r.faults} faults`}{r.place ? ` · ${r.place}` : ""}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Grade progress */}
+          <div className="mb-4 px-1">
+            <div className="flex justify-between items-center mb-1">
+              <span className="text-stone/45" style={{ fontSize: "10px" }}>Grade 5 → Grade 6 progress</span>
+              <span className="text-stone/45" style={{ fontSize: "10px" }}>3 of 5 Qs</span>
+            </div>
+            <div className="h-1 rounded-full bg-plum-700 overflow-hidden">
+              <div className="h-full rounded-full" style={{ width: "60%", background: "linear-gradient(90deg, #16A34A, #4ade80)" }} />
+            </div>
+          </div>
+
+          {/* Stats */}
+          <div className="grid grid-cols-4 gap-2 pt-3 border-t border-plum-700">
+            {[
+              { label: "Clean Runs", value: "28" },
+              { label: "Qs", value: "15" },
+              { label: "Placings", value: "34" },
+              { label: "Trials", value: "52" },
+            ].map((s) => (
+              <div key={s.label} className="text-center">
+                <div className="text-base font-bold" style={{ color: "#4ade80" }}>{s.value}</div>
+                <div className="text-xs text-stone/50">{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Result card */}
       <section className="px-5 pb-16">
         <div className="text-center mb-6">
