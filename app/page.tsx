@@ -101,9 +101,10 @@ function DogPreviewCard({ dog }: { dog: typeof mockDogs[0] }) {
             <div className="text-xs text-stone/70">{dog.breed}</div>
           </div>
           {dog.titles.length > 0 && (
-            <div className="absolute top-3 right-3 flex gap-1">
+            <div className="absolute top-3 right-3 flex gap-1 flex-wrap justify-end">
               {dog.titles.map((t) => (
-                <span key={t} className="text-xs px-2 py-0.5 rounded-full bg-gold-500/20 text-gold-400 border border-gold-600/30 font-medium">
+                <span key={t} className="text-xs px-2 py-0.5 rounded-full font-semibold"
+                  style={{ background: "rgba(17,16,20,0.82)", border: "1px solid rgba(201,162,74,0.5)", color: "#E2C66D", backdropFilter: "blur(4px)" }}>
                   {t === "Show Champion" ? "ShCh" : t}
                 </span>
               ))}
