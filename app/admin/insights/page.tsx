@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getDiscoveryDb, STATUSES, REACTIONS, scoreColor, scoreLabel } from "@/lib/discoveryDb";
 
 export const dynamic = "force-dynamic";
