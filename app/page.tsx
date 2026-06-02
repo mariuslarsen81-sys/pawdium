@@ -315,9 +315,9 @@ export default function HomePage() {
           {/* Stats */}
           <div className="grid grid-cols-4 gap-2 pt-3 border-t border-plum-700">
             {[
-              { label: "Clean Runs", value: "28" },
+              { label: "Clear Runs", value: "28" },
               { label: "Qs", value: "15" },
-              { label: "Placings", value: "34" },
+              { label: "Top 3s", value: "34" },
               { label: "Trials", value: "52" },
             ].map((s) => (
               <div key={s.label} className="text-center">
@@ -338,6 +338,7 @@ export default function HomePage() {
           </p>
         </div>
         <div className="max-w-xs mx-auto">
+          <p className="text-center text-xs text-stone/30 mb-3">Example card using fictional data.</p>
           <div className="rounded-2xl overflow-hidden flex flex-col"
             style={{
               aspectRatio: "4/5",
@@ -406,8 +407,8 @@ export default function HomePage() {
             },
             {
               icon: "🎖️",
-              title: "Ribbon Rack",
-              desc: "Every ribbon, rosette, CC, Q and title in one visual trophy cabinet. The instant satisfaction of seeing the full career at a glance.",
+              title: "Achievement Rack",
+              desc: "Every rosette, CC, Q, title and milestone in one visual trophy cabinet. The instant satisfaction of seeing the full career at a glance.",
             },
             {
               icon: "📸",
