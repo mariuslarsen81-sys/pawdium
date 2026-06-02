@@ -59,7 +59,7 @@ export default function DiscoveryPage() {
 
   const priorityCount = contacts.filter(c => (c.total_score ?? 0) >= 17).length;
 
-  const inputCls = "px-3 py-2 rounded-lg bg-plum-800 border border-plum-700 text-ivory text-sm placeholder-stone/35 focus:outline-none focus:border-gold-500";
+  const inputCls = "px-3 py-2 rounded-lg bg-plum-800 border border-plum-700 text-ivory text-sm placeholder-stone/50 focus:outline-none focus:border-gold-500";
 
   return (
     <div className="px-5 py-8 max-w-5xl mx-auto">

@@ -33,7 +33,7 @@ const BLANK: Partial<DiscoveryContact> = {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="bg-plum-800 border border-plum-700 rounded-xl p-5 mb-4">
-      <h3 className="text-xs font-semibold text-stone/35 uppercase tracking-widest mb-4">{title}</h3>
+      <h3 className="text-xs font-semibold text-stone/60 uppercase tracking-widest mb-4">{title}</h3>
       {children}
     </div>
   );
@@ -42,13 +42,13 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="mb-4 last:mb-0">
-      <label className="block text-xs text-stone/45 mb-1.5">{label}</label>
+      <label className="block text-xs text-stone/70 mb-1.5">{label}</label>
       {children}
     </div>
   );
 }
 
-const inp = "w-full px-3 py-2.5 rounded-lg bg-plum-700 border border-plum-600 text-ivory text-sm placeholder-stone/25 focus:outline-none focus:border-gold-500";
+const inp = "w-full px-3 py-2.5 rounded-lg bg-plum-700 border border-plum-500 text-ivory text-sm placeholder-stone/45 focus:outline-none focus:border-gold-500";
 const sel = `${inp} cursor-pointer`;
 const tex = `${inp} resize-none`;
 
@@ -59,7 +59,7 @@ function ScoreRow({ label, value, onChange, hint }: {
     <div className="mb-4">
       <div className="flex items-baseline justify-between mb-1.5">
         <span className="text-xs text-stone/45">{label}</span>
-        <span className="text-xs text-stone/30">{hint}</span>
+        <span className="text-xs text-stone/50">{hint}</span>
       </div>
       <div className="flex gap-1.5">
         {[1, 2, 3, 4, 5].map(n => (
