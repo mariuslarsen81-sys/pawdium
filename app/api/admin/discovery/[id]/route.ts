@@ -12,7 +12,7 @@ export async function GET(
   try {
     const sql = db();
     const [contact] = await sql`
-      SELECT *, (activity_score + credibility_score + product_fit_score) AS total_score
+      SELECT *, (activity_score + credibility_score + product_fit_score + champion_potential) AS total_score
       FROM discovery_contacts
       WHERE id = ${parseInt(params.id)}
     `;
@@ -46,6 +46,7 @@ export async function PATCH(
         outreach_sent_date = ${d.outreach_sent_date || null},
         follow_up_date     = ${d.follow_up_date || null},
         interview_date     = ${d.interview_date || null},
+        call_outcome       = ${d.call_outcome ?? ""},
         key_pain_points    = ${d.key_pain_points ?? ""},
         current_workaround = ${d.current_workaround ?? ""},
         reaction           = ${d.reaction ?? ""},
@@ -61,7 +62,7 @@ export async function PATCH(
         source_url_2       = ${d.source_url_2 ?? ""},
         updated_at         = NOW()
       WHERE id = ${parseInt(params.id)}
-      RETURNING *, (activity_score + credibility_score + product_fit_score) AS total_score
+      RETURNING *, (activity_score + credibility_score + product_fit_score + champion_potential) AS total_score
     `;
     return NextResponse.json(contact);
   } catch (err) {

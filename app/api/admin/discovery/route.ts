@@ -5,9 +5,9 @@ export async function GET() {
   try {
     const sql = await getDiscoveryDb();
     const contacts = await sql`
-      SELECT *, (activity_score + credibility_score + product_fit_score) AS total_score
+      SELECT *, (activity_score + credibility_score + product_fit_score + champion_potential) AS total_score
       FROM discovery_contacts
-      ORDER BY (activity_score + credibility_score + product_fit_score) DESC, created_at DESC
+      ORDER BY (activity_score + credibility_score + product_fit_score + champion_potential) DESC, created_at DESC
     `;
     return NextResponse.json(contacts);
   } catch (err) {
@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
         ${d.notes ?? ""},       ${d.next_action ?? ""},
         ${d.source_url_1 ?? ""},       ${d.source_url_2 ?? ""}
       )
-      RETURNING *, (activity_score + credibility_score + product_fit_score) AS total_score
+      RETURNING *, (activity_score + credibility_score + product_fit_score + champion_potential) AS total_score
     `;
     return NextResponse.json(contact, { status: 201 });
   } catch (err) {

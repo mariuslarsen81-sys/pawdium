@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { DiscoveryContact, STATUSES } from "@/lib/discoveryDb";
+import { DiscoveryContact, STATUSES, scoreColor, scoreLabel } from "@/lib/discoveryDb";
 
 // ─── helpers ────────────────────────────────────────────────────────────────
 
@@ -14,22 +14,20 @@ function dateVal(v: string | null | undefined) {
 
 const MARKETS  = ["UK", "US", "Europe", "Australia", "Canada", "Ireland", "Other"];
 const REACTIONS = ["", "Love", "Interested", "Sceptical", "No"];
-const PAYS     = [
-  "", "None", "Maybe",
-  "Yes — unclear amount", "Yes — £5/mo", "Yes — £10/mo", "Yes — £15+/mo",
-];
+const PAYS     = ["", "None", "Maybe", "Yes — unclear amount", "Yes — £5/mo", "Yes — £10/mo", "Yes — £15+/mo"];
+const CALL_OUTCOMES = ["", "Completed — positive", "Completed — neutral", "Completed — not a fit", "No show", "Rescheduled", "Declined"];
 
 const BLANK: Partial<DiscoveryContact> = {
   name: "", discipline: "", market: "", breeds: "", level: "", role: "",
   dog_kennel: "", why_contact: "", contact_route: "", warm_intro: "",
-  status: "identified", outreach_sent_date: null, follow_up_date: null, interview_date: null,
+  status: "identified", outreach_sent_date: null, follow_up_date: null,
+  interview_date: null, call_outcome: "",
   key_pain_points: "", current_workaround: "", reaction: "", willingness_to_pay: "",
-  beta_fit: 0, champion_potential: 0,
-  activity_score: 1, credibility_score: 1, product_fit_score: 1,
+  champion_potential: 1, activity_score: 1, credibility_score: 1, product_fit_score: 1,
   notes: "", next_action: "", source_url_1: "", source_url_2: "",
 };
 
-// ─── sub-components ─────────────────────────────────────────────────────────
+// ─── sub-components ──────────────────────────────────────────────────────────
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -53,55 +51,36 @@ const inp = "w-full px-3 py-2.5 rounded-lg bg-plum-700 border border-plum-600 te
 const sel = `${inp} cursor-pointer`;
 const tex = `${inp} resize-none`;
 
-function ScorePicker({
-  label, value, onChange, hints,
-}: { label: string; value: number; onChange: (v: number) => void; hints: [string, string, string] }) {
+function ScoreRow({ label, value, onChange, hint }: {
+  label: string; value: number; onChange: (v: number) => void; hint: string;
+}) {
   return (
-    <div className="mb-5">
-      <div className="text-xs text-stone/40 mb-2">{label}</div>
-      <div className="flex gap-2">
-        {([1, 3, 5] as const).map(v => (
+    <div className="mb-4">
+      <div className="flex items-baseline justify-between mb-1.5">
+        <span className="text-xs text-stone/45">{label}</span>
+        <span className="text-xs text-stone/30">{hint}</span>
+      </div>
+      <div className="flex gap-1.5">
+        {[1, 2, 3, 4, 5].map(n => (
           <button
-            key={v} type="button" onClick={() => onChange(v)}
+            key={n} type="button" onClick={() => onChange(n)}
             className="flex-1 py-2 rounded-lg text-sm font-bold transition-all"
-            style={value === v
+            style={n === value
               ? { background: "linear-gradient(135deg,#EDD98A,#C9A24A)", color: "#111014" }
-              : { background: "rgba(17,16,20,0.5)", border: "1px solid rgba(201,162,74,0.2)", color: "#9CA3AF" }
+              : { background: "rgba(17,16,20,0.5)", border: "1px solid rgba(201,162,74,0.18)", color: "#9CA3AF" }
             }
-          >{v}</button>
-        ))}
-      </div>
-      <div className="flex gap-2 mt-1">
-        {hints.map((h, i) => (
-          <div key={i} className="flex-1 text-center text-stone/25 leading-tight" style={{ fontSize: "9px" }}>{h}</div>
+          >{n}</button>
         ))}
       </div>
     </div>
   );
 }
 
-function Stars({ value, onChange }: { value: number; onChange: (v: number) => void }) {
-  return (
-    <div className="flex gap-1.5">
-      {[1, 2, 3, 4, 5].map(n => (
-        <button
-          key={n} type="button" onClick={() => onChange(n)}
-          className="w-8 h-8 rounded-full text-xs font-bold transition-all"
-          style={n <= value
-            ? { background: "rgba(201,162,74,0.2)", color: "#C9A24A", border: "1px solid rgba(201,162,74,0.45)" }
-            : { background: "rgba(17,16,20,0.4)", color: "#6B7280", border: "1px solid rgba(107,114,128,0.15)" }
-          }
-        >{n}</button>
-      ))}
-    </div>
-  );
-}
-
-// ─── page ───────────────────────────────────────────────────────────────────
+// ─── page ────────────────────────────────────────────────────────────────────
 
 export default function ContactPage({ params }: { params: { id: string } }) {
-  const router  = useRouter();
-  const isNew   = params.id === "new";
+  const router = useRouter();
+  const isNew  = params.id === "new";
 
   const [contact, setContact] = useState<Partial<DiscoveryContact>>(BLANK);
   const [loading,  setLoading]  = useState(!isNew);
@@ -128,23 +107,12 @@ export default function ContactPage({ params }: { params: { id: string } }) {
     try {
       const url    = isNew ? "/api/admin/discovery" : `/api/admin/discovery/${params.id}`;
       const method = isNew ? "POST" : "PATCH";
-      const res    = await fetch(url, {
-        method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(contact),
-      });
+      const res    = await fetch(url, { method, headers: { "Content-Type": "application/json" }, body: JSON.stringify(contact) });
       if (!res.ok) throw new Error();
       const saved = await res.json();
-      if (isNew) {
-        router.push(`/admin/discovery/${saved.id}`);
-      } else {
-        setContact(saved);
-        setSavedOk(true);
-        setTimeout(() => setSavedOk(false), 2500);
-      }
-    } catch {
-      setErr("Save failed. Please try again.");
-    }
+      if (isNew) { router.push(`/admin/discovery/${saved.id}`); }
+      else { setContact(saved); setSavedOk(true); setTimeout(() => setSavedOk(false), 2500); }
+    } catch { setErr("Save failed."); }
     setSaving(false);
   }
 
@@ -155,42 +123,34 @@ export default function ContactPage({ params }: { params: { id: string } }) {
     router.push("/admin/discovery");
   }
 
-  const totalScore = (contact.activity_score ?? 1) + (contact.credibility_score ?? 1) + (contact.product_fit_score ?? 1);
-  const sc = totalScore >= 12 ? "#C9A24A" : totalScore >= 8 ? "#60A5FA" : "#9CA3AF";
+  const totalScore = (contact.activity_score ?? 1) + (contact.credibility_score ?? 1)
+                   + (contact.product_fit_score ?? 1) + (contact.champion_potential ?? 1);
+  const sc = scoreColor(totalScore);
+  const sl = scoreLabel(totalScore);
 
   if (loading) return <div className="text-center py-20 text-stone/35 text-sm">Loading…</div>;
 
   return (
     <div className="px-5 py-8 max-w-2xl mx-auto">
 
-      {/* Breadcrumb + actions */}
+      {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2 min-w-0">
-          <Link href="/admin/discovery" className="text-stone/35 hover:text-stone/60 transition-colors text-sm flex-shrink-0">
-            ← Discovery
-          </Link>
+          <Link href="/admin/discovery" className="text-stone/35 hover:text-stone/60 transition-colors text-sm flex-shrink-0">← Contacts</Link>
           {!isNew && contact.name && (
-            <>
-              <span className="text-stone/20 text-sm flex-shrink-0">/</span>
-              <span className="text-ivory text-sm font-medium truncate">{contact.name}</span>
-            </>
+            <><span className="text-stone/20 text-sm">/</span><span className="text-ivory text-sm font-medium truncate">{contact.name}</span></>
           )}
           {isNew && <span className="text-stone/40 text-sm">/ New contact</span>}
         </div>
         <div className="flex items-center gap-2 flex-shrink-0 ml-3">
           {!isNew && (
-            <button
-              onClick={del} disabled={deleting}
-              className="text-xs text-red-400/50 hover:text-red-400 transition-colors disabled:opacity-40 px-2 py-1"
-            >
+            <button onClick={del} disabled={deleting} className="text-xs text-red-400/50 hover:text-red-400 transition-colors px-2 py-1">
               {deleting ? "…" : "Delete"}
             </button>
           )}
-          <button
-            onClick={save} disabled={saving}
+          <button onClick={save} disabled={saving}
             className="text-sm font-semibold px-4 py-2 rounded-lg text-plum-900 disabled:opacity-60 min-w-[80px]"
-            style={{ background: "linear-gradient(135deg,#EDD98A,#C9A24A)" }}
-          >
+            style={{ background: "linear-gradient(135deg,#EDD98A,#C9A24A)" }}>
             {saving ? "Saving…" : savedOk ? "Saved ✓" : isNew ? "Create" : "Save"}
           </button>
         </div>
@@ -282,15 +242,20 @@ export default function ContactPage({ params }: { params: { id: string } }) {
             {STATUSES.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}
           </select>
         </Field>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-2 gap-3">
           <Field label="Outreach sent">
             <input type="date" className={inp} value={dateVal(contact.outreach_sent_date)} onChange={e => set("outreach_sent_date", e.target.value || null)} />
           </Field>
           <Field label="Follow-up date">
             <input type="date" className={inp} value={dateVal(contact.follow_up_date)} onChange={e => set("follow_up_date", e.target.value || null)} />
           </Field>
-          <Field label="Interview date">
+          <Field label="Call date">
             <input type="date" className={inp} value={dateVal(contact.interview_date)} onChange={e => set("interview_date", e.target.value || null)} />
+          </Field>
+          <Field label="Call outcome">
+            <select className={sel} value={contact.call_outcome ?? ""} onChange={e => set("call_outcome", e.target.value)}>
+              {CALL_OUTCOMES.map(o => <option key={o} value={o}>{o || "—"}</option>)}
+            </select>
           </Field>
         </div>
         <Field label="Next action">
@@ -322,39 +287,22 @@ export default function ContactPage({ params }: { params: { id: string } }) {
 
       {/* ── Scoring ── */}
       <Section title="Scoring">
-        <ScorePicker
-          label="Activity level"
-          value={contact.activity_score ?? 1}
-          onChange={v => set("activity_score", v)}
-          hints={["Occasional", "Regular", "Very active / multi-dog"]}
-        />
-        <ScorePicker
-          label="Credibility"
-          value={contact.credibility_score ?? 1}
-          onChange={v => set("credibility_score", v)}
-          hints={["Local hobbyist", "Serious competitor", "Known / respected"]}
-        />
-        <ScorePicker
-          label="Product fit"
-          value={contact.product_fit_score ?? 1}
-          onChange={v => set("product_fit_score", v)}
-          hints={["Mild interest", "Clear use case", "Obvious beta / champion"]}
-        />
+        <ScoreRow label="Activity Level"      value={contact.activity_score ?? 1}     onChange={v => set("activity_score", v)}     hint="How active in shows / agility" />
+        <ScoreRow label="Credibility"         value={contact.credibility_score ?? 1}  onChange={v => set("credibility_score", v)}  hint="How respected / visible" />
+        <ScoreRow label="Product Fit"         value={contact.product_fit_score ?? 1}  onChange={v => set("product_fit_score", v)}  hint="How clearly Pawdium solves a real need" />
+        <ScoreRow label="Champion Potential"  value={contact.champion_potential ?? 1} onChange={v => set("champion_potential", v)} hint="Likely to refer / share publicly" />
 
-        {/* Total */}
-        <div className="flex items-center justify-between px-4 py-3 rounded-lg mb-5"
+        <div className="flex items-center justify-between px-4 py-3 rounded-lg mt-1"
           style={{ background: "rgba(17,16,20,0.5)", border: `1px solid ${sc}35` }}>
-          <span className="text-sm text-stone/50">Total score</span>
-          <span className="text-xl font-bold" style={{ color: sc }}>{totalScore}<span className="text-sm text-stone/35 ml-0.5">/15</span></span>
-        </div>
-
-        <div className="grid grid-cols-2 gap-6">
-          <Field label="Beta fit (1–5)">
-            <Stars value={contact.beta_fit ?? 0} onChange={v => set("beta_fit", v)} />
-          </Field>
-          <Field label="Champion potential (1–5)">
-            <Stars value={contact.champion_potential ?? 0} onChange={v => set("champion_potential", v)} />
-          </Field>
+          <div>
+            <span className="text-sm text-stone/50">Beta Priority Score</span>
+            <span className="text-xs text-stone/30 ml-2">= Activity + Credibility + Fit + Champion</span>
+          </div>
+          <div className="text-right">
+            <span className="text-xl font-bold" style={{ color: sc }}>{totalScore}</span>
+            <span className="text-sm text-stone/30">/20</span>
+            <div className="text-xs mt-0.5" style={{ color: sc }}>{sl}</div>
+          </div>
         </div>
       </Section>
 
@@ -365,18 +313,14 @@ export default function ContactPage({ params }: { params: { id: string } }) {
 
       {/* Bottom save */}
       <div className="flex gap-3 pb-16">
-        <button
-          onClick={save} disabled={saving}
+        <button onClick={save} disabled={saving}
           className="flex-1 py-3.5 rounded-xl font-semibold text-plum-900 disabled:opacity-60 text-sm"
-          style={{ background: "linear-gradient(135deg,#EDD98A,#C9A24A)" }}
-        >
+          style={{ background: "linear-gradient(135deg,#EDD98A,#C9A24A)" }}>
           {saving ? "Saving…" : savedOk ? "Saved ✓" : isNew ? "Create Contact" : "Save Changes"}
         </button>
         {!isNew && (
-          <button
-            onClick={del} disabled={deleting}
-            className="px-5 py-3.5 rounded-xl text-sm text-red-400/50 hover:text-red-400 border border-red-900/25 hover:border-red-900/50 transition-colors"
-          >
+          <button onClick={del} disabled={deleting}
+            className="px-5 py-3.5 rounded-xl text-sm text-red-400/50 hover:text-red-400 border border-red-900/25 hover:border-red-900/50 transition-colors">
             {deleting ? "…" : "Delete"}
           </button>
         )}

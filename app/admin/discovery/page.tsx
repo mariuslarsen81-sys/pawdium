@@ -2,14 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
-import { DiscoveryContact, STATUSES, DISCIPLINES } from "@/lib/discoveryDb";
-
-function scoreColor(n: number) {
-  if (n >= 12) return "#C9A24A";
-  if (n >= 8)  return "#60A5FA";
-  if (n >= 5)  return "#9CA3AF";
-  return "#6B7280";
-}
+import { DiscoveryContact, STATUSES, DISCIPLINES, scoreColor } from "@/lib/discoveryDb";
 
 function DisciplineLabel({ value }: { value: string }) {
   const map: Record<string, string> = { show: "Show", agility: "Agility", both: "Both", other: "Other" };
@@ -64,7 +57,7 @@ export default function DiscoveryPage() {
     return m;
   }, [contacts]);
 
-  const priorityCount = contacts.filter(c => (c.total_score ?? 0) >= 12).length;
+  const priorityCount = contacts.filter(c => (c.total_score ?? 0) >= 17).length;
 
   const inputCls = "px-3 py-2 rounded-lg bg-plum-800 border border-plum-700 text-ivory text-sm placeholder-stone/35 focus:outline-none focus:border-gold-500";
 
@@ -76,7 +69,7 @@ export default function DiscoveryPage() {
         <div>
           <h1 className="text-xl font-bold text-ivory">Discovery CRM</h1>
           <p className="text-stone/35 text-xs mt-0.5">
-            {contacts.length} contacts{priorityCount > 0 ? ` · ${priorityCount} priority` : ""}
+            {contacts.length} contacts{priorityCount > 0 ? ` · ${priorityCount} must-speak-to` : ""}
           </p>
         </div>
         <Link
@@ -211,7 +204,7 @@ export default function DiscoveryPage() {
                     {/* Score */}
                     <td className="px-4 py-3 hidden md:table-cell">
                       <span className="text-sm font-bold tabular-nums" style={{ color: scoreColor(score) }}>
-                        {score}/15
+                        {score}/20
                       </span>
                     </td>
 
