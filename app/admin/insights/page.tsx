@@ -52,7 +52,7 @@ export default async function InsightsPage() {
           <h2 className="text-sm font-semibold text-ivory mb-4">Pipeline</h2>
           <div className="space-y-2">
             {STATUSES.map(s => {
-              const row = statusRows.find((r: { status: string }) => r.status === s.value);
+              const row = statusRows.find((r: any) => r.status === s.value);
               const count = row?.count ?? 0;
               if (!count) return null;
               const pct = totalContacts > 0 ? Math.round(count / totalContacts * 100) : 0;
@@ -76,7 +76,7 @@ export default async function InsightsPage() {
             ? <p className="text-stone/35 text-sm">No data yet.</p>
             : (
               <div className="space-y-3">
-                {disciplineRows.map((r: { discipline: string; count: number }) => (
+                {disciplineRows.map((r: any) => (
                   <div key={r.discipline} className="flex items-center gap-3">
                     <div className="w-16 text-xs text-stone/50 capitalize flex-shrink-0">{r.discipline}</div>
                     <div className="flex-1 h-2 rounded-full bg-plum-700 overflow-hidden">
@@ -94,7 +94,7 @@ export default async function InsightsPage() {
             ? <p className="text-stone/35 text-sm">No interviews logged yet.</p>
             : (
               <div className="space-y-2">
-                {reactionRows.map((r: { reaction: string; count: number }) => {
+                {reactionRows.map((r: any) => {
                   const cfg = REACTIONS.find(x => x.value === r.reaction);
                   return (
                     <div key={r.reaction} className="flex items-center gap-3">
@@ -121,7 +121,7 @@ export default async function InsightsPage() {
           ? <p className="text-stone/35 text-sm">No contacts yet.</p>
           : (
             <div className="space-y-2">
-              {topContacts.map((c: { name: string; score: number; status: string; discipline: string }, i: number) => {
+              {topContacts.map((c: any, i: number) => {
                 const sc = scoreColor(c.score);
                 const sl = scoreLabel(c.score);
                 const st = STATUSES.find(s => s.value === c.status);
@@ -150,7 +150,7 @@ export default async function InsightsPage() {
         <div className="bg-plum-800 border border-plum-700 rounded-xl p-5 mb-6">
           <h2 className="text-sm font-semibold text-ivory mb-4">Willingness to Pay</h2>
           <div className="space-y-2">
-            {payRows.map((r: { would_pay: string; count: number }) => (
+            {payRows.map((r: any) => (
               <div key={r.would_pay} className="flex items-center gap-3">
                 <div className="flex-1 text-sm text-stone/60">{r.would_pay}</div>
                 <div className="text-sm font-bold text-gold-400">{r.count}</div>
@@ -169,7 +169,7 @@ export default async function InsightsPage() {
             ? <p className="text-stone/35 text-sm">No interviews logged yet.</p>
             : (
               <div className="space-y-3">
-                {painPoints.map((p: { biggest_pain: string }, i: number) => (
+                {painPoints.map((p: any, i: number) => (
                   <div key={i} className="text-sm text-stone/55 border-l-2 border-plum-600 pl-3 leading-relaxed">
                     {p.biggest_pain}
                   </div>
@@ -185,7 +185,7 @@ export default async function InsightsPage() {
             ? <p className="text-stone/35 text-sm">No quotes logged yet.</p>
             : (
               <div className="space-y-4">
-                {quotes.map((q: { contact_name: string; quote: string; reaction_pawdium: string }, i: number) => {
+                {quotes.map((q: any, i: number) => {
                   const r = REACTIONS.find(x => x.value === q.reaction_pawdium);
                   return (
                     <div key={i}>
@@ -207,7 +207,7 @@ export default async function InsightsPage() {
         <div className="bg-plum-800 border border-plum-700 rounded-xl p-5 mt-6">
           <h2 className="text-sm font-semibold text-ivory mb-4">Feature Requests (raw)</h2>
           <div className="space-y-3">
-            {features.map((f: { must_have_features: string }, i: number) => (
+            {features.map((f: any, i: number) => (
               <div key={i} className="text-sm text-stone/55 border-l-2 border-gold-600/30 pl-3 leading-relaxed">
                 {f.must_have_features}
               </div>

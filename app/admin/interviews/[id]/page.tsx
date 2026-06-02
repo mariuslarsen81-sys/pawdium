@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { InterviewNote, REACTIONS } from "@/lib/discoveryDb";
 
@@ -63,9 +63,8 @@ function ReactionSelect({ label, value, onChange }: { label: string; value: stri
 }
 
 export default function InterviewPage({ params }: { params: { id: string } }) {
-  const router       = useRouter();
-  const searchParams = useSearchParams();
-  const isNew        = params.id === "new";
+  const router  = useRouter();
+  const isNew   = params.id === "new";
 
   const [note,    setNote]    = useState<Partial<InterviewNote>>(BLANK);
   const [contacts, setContacts] = useState<{ id: number; name: string }[]>([]);
@@ -81,16 +80,6 @@ export default function InterviewPage({ params }: { params: { id: string } }) {
       .then(r => r.json())
       .then(d => setContacts(d.map((c: { id: number; name: string }) => ({ id: c.id, name: c.name }))));
   }, []);
-
-  // Pre-fill contact from query param (?contact=ID)
-  useEffect(() => {
-    if (!isNew) return;
-    const cid = searchParams.get("contact");
-    if (cid) {
-      const found = contacts.find(c => c.id === parseInt(cid));
-      if (found) setNote(prev => ({ ...prev, contact_id: found.id, contact_name: found.name }));
-    }
-  }, [isNew, searchParams, contacts]);
 
   // Load existing note
   useEffect(() => {
