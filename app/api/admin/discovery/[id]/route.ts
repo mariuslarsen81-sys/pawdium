@@ -47,6 +47,8 @@ export async function PATCH(
         follow_up_date     = ${d.follow_up_date || null},
         interview_date     = ${d.interview_date || null},
         call_outcome       = ${d.call_outcome ?? ""},
+        email              = ${d.email ?? ""},
+        phone              = ${d.phone ?? ""},
         key_pain_points    = ${d.key_pain_points ?? ""},
         current_workaround = ${d.current_workaround ?? ""},
         reaction           = ${d.reaction ?? ""},

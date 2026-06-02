@@ -20,6 +20,7 @@ const CALL_OUTCOMES = ["", "Completed — positive", "Completed — neutral", "C
 const BLANK: Partial<DiscoveryContact> = {
   name: "", discipline: "", market: "", breeds: "", level: "", role: "",
   dog_kennel: "", why_contact: "", contact_route: "", warm_intro: "",
+  email: "", phone: "",
   status: "identified", outreach_sent_date: null, follow_up_date: null,
   interview_date: null, call_outcome: "",
   key_pain_points: "", current_workaround: "", reaction: "", willingness_to_pay: "",
@@ -219,6 +220,14 @@ export default function ContactPage({ params }: { params: { id: string } }) {
         <Field label="Why speak to them">
           <textarea className={tex} rows={2} value={contact.why_contact ?? ""} onChange={e => set("why_contact", e.target.value)} placeholder="Hypothesis to test, research angle…" />
         </Field>
+        <div className="grid grid-cols-2 gap-3">
+          <Field label="Email">
+            <input type="email" className={inp} value={contact.email ?? ""} onChange={e => set("email", e.target.value)} placeholder="name@example.com" />
+          </Field>
+          <Field label="Phone">
+            <input type="tel" className={inp} value={contact.phone ?? ""} onChange={e => set("phone", e.target.value)} placeholder="+44 7700 000000" />
+          </Field>
+        </div>
         <Field label="Contact route">
           <input className={inp} value={contact.contact_route ?? ""} onChange={e => set("contact_route", e.target.value)} placeholder="Instagram, email, club intro, LinkedIn…" />
         </Field>

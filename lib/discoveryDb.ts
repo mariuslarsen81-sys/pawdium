@@ -19,6 +19,8 @@ export type DiscoveryContact = {
   follow_up_date: string | null;
   interview_date: string | null;
   call_outcome: string;
+  email: string;
+  phone: string;
   key_pain_points: string;
   current_workaround: string;
   reaction: string;
@@ -151,6 +153,8 @@ export async function getDiscoveryDb() {
       follow_up_date     DATE,
       interview_date     DATE,
       call_outcome       TEXT DEFAULT '',
+      email              TEXT DEFAULT '',
+      phone              TEXT DEFAULT '',
       key_pain_points    TEXT DEFAULT '',
       current_workaround TEXT DEFAULT '',
       reaction           TEXT DEFAULT '',
@@ -168,8 +172,10 @@ export async function getDiscoveryDb() {
     )
   `;
 
-  // Add call_outcome if missing from older installs
+  // Add columns if missing from older installs
   await sql`ALTER TABLE discovery_contacts ADD COLUMN IF NOT EXISTS call_outcome TEXT DEFAULT ''`;
+  await sql`ALTER TABLE discovery_contacts ADD COLUMN IF NOT EXISTS email TEXT DEFAULT ''`;
+  await sql`ALTER TABLE discovery_contacts ADD COLUMN IF NOT EXISTS phone TEXT DEFAULT ''`;
 
   await sql`
     CREATE TABLE IF NOT EXISTS interview_notes (
