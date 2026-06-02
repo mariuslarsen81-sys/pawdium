@@ -7,7 +7,7 @@ import { OutreachTemplate, TEMPLATE_TYPES } from "@/lib/discoveryDb";
 
 const BLANK: Partial<OutreachTemplate> = { type: "", label: "", subject: "", body: "" };
 
-const inp = "w-full px-3 py-2.5 rounded-lg bg-plum-700 border border-plum-500 text-ivory text-sm placeholder-stone/45 focus:outline-none focus:border-gold-500";
+const inp = "w-full px-3 py-2.5 rounded-lg bg-plum-700 border border-plum-500 text-ivory text-sm focus:outline-none focus:border-gold-500 admin-input";
 const sel = `${inp} cursor-pointer`;
 
 export default function TemplatePage({ params }: { params: { id: string } }) {
@@ -93,19 +93,19 @@ export default function TemplatePage({ params }: { params: { id: string } }) {
       <div className="bg-plum-800 border border-plum-700 rounded-xl p-5 mb-4">
         <div className="grid grid-cols-2 gap-3 mb-4">
           <div>
-            <label className="block text-xs text-stone/70 mb-1.5">Type</label>
+            <label className="block text-xs mb-1.5" style={{ color: "#C4BBAF" }}>Type</label>
             <select className={sel} value={tmpl.type ?? ""} onChange={e => set("type", e.target.value)}>
               <option value="">—</option>
               {TEMPLATE_TYPES.map(t => <option key={t.value} value={t.value}>{t.label}</option>)}
             </select>
           </div>
           <div>
-            <label className="block text-xs text-stone/70 mb-1.5">Label</label>
+            <label className="block text-xs mb-1.5" style={{ color: "#C4BBAF" }}>Label</label>
             <input className={inp} value={tmpl.label ?? ""} onChange={e => set("label", e.target.value)} placeholder="Short display name" />
           </div>
         </div>
         <div className="mb-4">
-          <label className="block text-xs text-stone/70 mb-1.5">Subject line</label>
+          <label className="block text-xs mb-1.5" style={{ color: "#C4BBAF" }}>Subject line</label>
           <input className={inp} value={tmpl.subject ?? ""} onChange={e => set("subject", e.target.value)} placeholder="Email subject…" />
         </div>
         <div>

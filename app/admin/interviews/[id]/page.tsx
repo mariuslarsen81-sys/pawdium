@@ -23,7 +23,7 @@ const BLANK: Partial<InterviewNote> = {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="bg-plum-800 border border-plum-700 rounded-xl p-5 mb-4">
-      <h3 className="text-xs font-semibold text-stone/60 uppercase tracking-widest mb-4">{title}</h3>
+      <h3 className="text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: "#9C8FA0" }}>{title}</h3>
       {children}
     </div>
   );
@@ -32,13 +32,13 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="mb-4 last:mb-0">
-      <label className="block text-xs text-stone/70 mb-1.5">{label}</label>
+      <label className="block text-xs mb-1.5" style={{ color: "#C4BBAF" }}>{label}</label>
       {children}
     </div>
   );
 }
 
-const inp = "w-full px-3 py-2.5 rounded-lg bg-plum-700 border border-plum-500 text-ivory text-sm placeholder-stone/45 focus:outline-none focus:border-gold-500";
+const inp = "w-full px-3 py-2.5 rounded-lg bg-plum-700 border border-plum-500 text-ivory text-sm focus:outline-none focus:border-gold-500 admin-input";
 const sel = `${inp} cursor-pointer`;
 const tex = `${inp} resize-none`;
 
