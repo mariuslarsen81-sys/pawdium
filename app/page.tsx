@@ -378,7 +378,7 @@ export default function HomePage() {
                 <div className="text-ivory font-bold text-lg font-serif leading-tight">Luna</div>
                 <div className="text-stone/45 text-xs mb-2">Silvermoor Lunar Eclipse ShCh</div>
                 <div className="text-2xl font-bold gold-gradient leading-tight mb-0.5">Best of Breed</div>
-                <div className="text-ivory/90 text-sm font-semibold">Crufts 2024</div>
+                <div className="text-ivory/90 text-sm font-semibold">National Championship Show 2024</div>
               </div>
 
               {/* Meta */}
